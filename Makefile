@@ -44,6 +44,13 @@ CONFIGURE_ENV +=	gl_cv_func_printf_directive_a=yes \
 			gl_cv_func_printf_directive_n=yes \
 			gl_cv_func_printf_enomem=yes
 
+# Disable dependencies of the gnulib fprintf-posix module.
+# Even though we tell ./configure that our fprintf(3) shall be used,
+# gnulib is too stupid to understand that implies the dependecies
+# aren't needed either und would still compile in needless and
+# potentially risky printf(3) code from gnulib.
+CONFIGURE_ENV +=	ac_cv_func_vasnprintf=yes
+
 TEST_TARGET =		check
 
 pre-configure:
