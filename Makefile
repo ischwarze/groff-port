@@ -26,6 +26,10 @@ MAKE_FLAGS +=		docdir=${PREFIX}/share/doc/groff \
 MODULES =		perl
 CONFIGURE_STYLE =	gnu
 
+# In contrast to ghostscript itself, the ghostscript fonts have no
+# dependency, and they are very useful for typesetting work with groff.
+BUILD_DEPENDS =		print/ghostscript/gnu-fonts
+
 # Our groff port needs to be lightweight because a few very basic
 # ports still depend on it for building their manual pages.
 # In particular, avoid dependencies on the following heavy ports:
@@ -51,8 +55,6 @@ CONFIGURE_ARGS +=	--without-uchardet		# textproc/uchardet
 
 # Needed because groff would otherwise prefer gawk.
 CONFIGURE_ARGS +=	--with-awk=awk
-
-CONFIGURE_ARGS +=	--without-urw-fonts-dir
 
 # Disable bogus tests in the gnulib fprintf-posix module.
 # Groff has no reason whatsoever to require these particular GNU features,
