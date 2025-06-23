@@ -29,11 +29,7 @@ documents can adjust text to the right margin:
 ..
 
 
-To suit the taste of OpenBSD developers, two mdoc(7) formatting
-details have been changed with respect to the upstream distribution:
-
- * Title lines use an n-dash, not an m-dash between the manual page
-   name and the manual page description.
-
- * The .Pa macro always produces emphasized text,
-   even in the FILES section.
+To suit the taste of OpenBSD developers, one mdoc(7) formatting
+detail has been changed with respect to the upstream distribution:
+Title lines use an n-dash, not an m-dash between the manual page
+name and the manual page description.
