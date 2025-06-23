@@ -51,6 +51,11 @@ CONFIGURE_ENV +=	gl_cv_func_printf_directive_a=yes \
 # potentially risky printf(3) code from gnulib.
 CONFIGURE_ENV +=	ac_cv_func_vasnprintf=yes
 
+# Even after the above CONFIGURE_ENV cleanup, gnulib compiles in
+# several bogus files that groff does not need, merely because
+# gnulib enables them by default.  Get rid of them.
+MAKE_FLAGS +=		lib_libgnu_a_OBJECTS=
+
 TEST_TARGET =		check
 
 pre-configure:
