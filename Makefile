@@ -41,7 +41,8 @@ CONFIGURE_ENV +=	ac_cv_prog_PDFFONTS= \
 # from gnulib.  In particular, groff does not use %n, so it would be
 # insane to use an implementation that lacks our %n protection.
 CONFIGURE_ENV +=	gl_cv_func_printf_directive_a=yes \
-			gl_cv_func_printf_directive_n=yes
+			gl_cv_func_printf_directive_n=yes \
+			gl_cv_func_printf_enomem=yes
 
 TEST_TARGET =		check
 
