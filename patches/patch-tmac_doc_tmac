@@ -1,9 +1,9 @@
 chunk 1: Always format .Pa the same way, as requested by jmc@ (local change).
 chunks 2-3: Do not misinterpret .Lk args as macros (committed upstream, too).
 
-Index: tmac/doc.tmac-u
---- tmac/doc.tmac-u.orig
-+++ tmac/doc.tmac-u
+Index: tmac/doc.tmac
+--- tmac/doc.tmac.orig
++++ tmac/doc.tmac
 @@ -3761,8 +3761,6 @@
  .
  .        if \n[doc-in-files-section] \{\
