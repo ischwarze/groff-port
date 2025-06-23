@@ -3,9 +3,9 @@ chunk 4: Default value for the .Os macro (local change).
 chunk 5: Accept any number of arguments for .Dd (committed upstream, too).
 chunk 6: Do not use an ugly double dash in the NAME line (local change).
 
-Index: tmac/doc-common-u
---- tmac/doc-common-u.orig
-+++ tmac/doc-common-u
+Index: tmac/mdoc/doc-common
+--- tmac/mdoc/doc-common.orig
++++ tmac/mdoc/doc-common
 @@ -234,12 +234,10 @@
  .
  .\" an alternative, more detailed scheme for naming the manual sections
