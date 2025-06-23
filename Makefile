@@ -25,15 +25,34 @@ MAKE_FLAGS +=		docdir=${PREFIX}/share/doc/groff \
 
 MODULES =		perl
 CONFIGURE_STYLE =	gnu
-CONFIGURE_ARGS +=	--with-awk=awk --without-gs \
-			--without-libiconv-prefix --without-uchardet \
-			--without-urw-fonts-dir --without-x \
-			pnmcrop=missing pnmcut=missing pnmtopng=missing \
-			pnmtops=missing psselect=missing
-CONFIGURE_ENV +=	ac_cv_prog_PDFFONTS= \
-			ac_cv_prog_PDFIMAGES= \
-			ac_cv_prog_PDFINFO= \
-			ac_cv_prog_XPMTOPPM=
+
+# Our groff port needs to be lightweight because a few very basic
+# ports still depend on it for building their manual pages.
+# In particular, avoid dependencies on the following heavy ports:
+CONFIGURE_ARGS +=	--without-libiconv-prefix	# converters/libiconv
+CONFIGURE_ARGS +=	--without-gs			# print/ghostscript
+CONFIGURE_ARGS +=	pnmcrop=missing \
+			pnmcut=missing \
+			pnmtopng=missing \
+			pnmtops=missing \
+			XPMTOPPM=missing		# graphics/netpbm
+CONFIGURE_ARGS +=	PDFFONTS=missing \
+			PDFIMAGES=missing \
+			PDFINFO=missing			# print/poppler-utils
+CONFIGURE_ARGS +=	psselect=missing		# print/psutils
+
+# For similar reasons, avoid the dependency on X11 for now.
+# It would only provide the gxditview(1) program,
+# which isn't all that important.
+CONFIGURE_ARGS +=	--without-x
+
+# This one is not very useful on OpenBSD anyway:
+CONFIGURE_ARGS +=	--without-uchardet		# textproc/uchardet
+
+# Needed because groff would otherwise prefer gawk.
+CONFIGURE_ARGS +=	--with-awk=awk
+
+CONFIGURE_ARGS +=	--without-urw-fonts-dir
 
 # Disable bogus tests in the gnulib fprintf-posix module.
 # Groff has no reason whatsoever to require these particular GNU features,
