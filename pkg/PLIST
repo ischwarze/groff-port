@@ -13,7 +13,6 @@ bin/grap2graph
 @bin bin/grn
 @bin bin/grodvi
 @bin bin/groff
-bin/groffer
 bin/grog
 @bin bin/grolbp
 @bin bin/grolj4
@@ -36,12 +35,6 @@ bin/pic2graph
 @bin bin/pre-grohtml
 @bin bin/preconv
 @bin bin/refer
-bin/roff2dvi
-bin/roff2html
-bin/roff2pdf
-bin/roff2ps
-bin/roff2text
-bin/roff2x
 @bin bin/soelim
 @bin bin/tbl
 @bin bin/tfmtodit
@@ -49,22 +42,6 @@ bin/roff2x
 @info info/groff.info
 @comment lib/charset.alias
 lib/groff/
-lib/groff/glilypond/
-lib/groff/glilypond/args.pl
-lib/groff/glilypond/oop_fh.pl
-lib/groff/glilypond/subs.pl
-lib/groff/gpinyin/
-lib/groff/gpinyin/subs.pl
-lib/groff/groff_opts_no_arg.txt
-lib/groff/groff_opts_with_arg.txt
-lib/groff/groffer/
-lib/groff/groffer/main_subs.pl
-lib/groff/groffer/man.pl
-lib/groff/groffer/split_env.sh
-lib/groff/groffer/subs.pl
-lib/groff/groffer/version.sh
-lib/groff/grog/
-lib/groff/grog/subs.pl
 lib/groff/site-tmac/
 @man man/man1/addftinfo.1
 @man man/man1/afmtodit.1
@@ -79,7 +56,6 @@ lib/groff/site-tmac/
 @man man/man1/grn.1
 @man man/man1/grodvi.1
 @man man/man1/groff.1
-@man man/man1/groffer.1
 @man man/man1/grog.1
 @man man/man1/grohtml.1
 @man man/man1/grolbp.1
@@ -101,37 +77,32 @@ lib/groff/site-tmac/
 @man man/man1/pic2graph.1
 @man man/man1/preconv.1
 @man man/man1/refer.1
-@man man/man1/roff2dvi.1
-@man man/man1/roff2html.1
-@man man/man1/roff2pdf.1
-@man man/man1/roff2ps.1
-@man man/man1/roff2text.1
-@man man/man1/roff2x.1
 @man man/man1/soelim.1
 @man man/man1/tbl.1
 @man man/man1/tfmtodit.1
 @man man/man1/troff.1
-@man man/man5/groff_filenames.5
 @man man/man5/groff_font.5
 @man man/man5/groff_out.5
 @man man/man5/groff_tmac.5
-@man man/man5/lj4_font.5
-@man man/man7/ditroff.7
 @man man/man7/groff.7
 @man man/man7/groff_char.7
 @man man/man7/groff_diff.7
 @man man/man7/groff_hdtbl.7
 @man man/man7/groff_man.7
+@man man/man7/groff_man_style.7
 @man man/man7/groff_mdoc.7
 @man man/man7/groff_me.7
 @man man/man7/groff_mm.7
 @man man/man7/groff_mmse.7
 @man man/man7/groff_mom.7
 @man man/man7/groff_ms.7
+@man man/man7/groff_rfc1345.7
 @man man/man7/groff_trace.7
 @man man/man7/groff_www.7
 @man man/man7/roff.7
 share/doc/groff/
+share/doc/groff/groff-man-pages.utf8.txt
+share/doc/groff/groff.txt
 share/doc/groff/html/
 share/doc/groff/html/mom/
 share/doc/groff/html/mom/appendices.html
@@ -157,12 +128,16 @@ share/doc/groff/html/mom/toc.html
 share/doc/groff/html/mom/typesetting.html
 share/doc/groff/html/mom/using.html
 share/doc/groff/html/mom/version-2.html
+share/doc/groff/me-revisions
 share/doc/groff/meintro.me
 share/doc/groff/meintro.ps
 share/doc/groff/meintro_fr.me
 share/doc/groff/meintro_fr.ps
 share/doc/groff/meref.me
 share/doc/groff/meref.ps
+share/doc/groff/ms.ms
+share/doc/groff/ms.ps
+share/doc/groff/msboxes.ms
 share/doc/groff/pic.ms
 share/doc/groff/pic.ps
 share/doc/pkg-readmes/${PKGSTEM}
@@ -258,6 +233,8 @@ share/examples/groff/mm/letter.mm
 share/examples/groff/mom/
 share/examples/groff/mom/README-fr.txt
 share/examples/groff/mom/README.txt
+share/examples/groff/mom/copyright-chapter.mom
+share/examples/groff/mom/copyright-default.mom
 share/examples/groff/mom/elvis_syntax
 share/examples/groff/mom/elvis_syntax.new
 share/examples/groff/mom/letter.mom
@@ -433,6 +410,14 @@ share/groff/${VERSION}/font/devlj4/generate/symbol.map
 share/groff/${VERSION}/font/devlj4/generate/text.map
 share/groff/${VERSION}/font/devlj4/generate/wingdings.map
 share/groff/${VERSION}/font/devpdf/
+share/groff/${VERSION}/font/devpdf/AB
+share/groff/${VERSION}/font/devpdf/ABI
+share/groff/${VERSION}/font/devpdf/AI
+share/groff/${VERSION}/font/devpdf/AR
+share/groff/${VERSION}/font/devpdf/BMB
+share/groff/${VERSION}/font/devpdf/BMBI
+share/groff/${VERSION}/font/devpdf/BMI
+share/groff/${VERSION}/font/devpdf/BMR
 share/groff/${VERSION}/font/devpdf/CB
 share/groff/${VERSION}/font/devpdf/CBI
 share/groff/${VERSION}/font/devpdf/CI
@@ -443,21 +428,34 @@ share/groff/${VERSION}/font/devpdf/Foundry
 share/groff/${VERSION}/font/devpdf/HB
 share/groff/${VERSION}/font/devpdf/HBI
 share/groff/${VERSION}/font/devpdf/HI
+share/groff/${VERSION}/font/devpdf/HNB
+share/groff/${VERSION}/font/devpdf/HNBI
+share/groff/${VERSION}/font/devpdf/HNI
+share/groff/${VERSION}/font/devpdf/HNR
 share/groff/${VERSION}/font/devpdf/HR
+share/groff/${VERSION}/font/devpdf/NB
+share/groff/${VERSION}/font/devpdf/NBI
+share/groff/${VERSION}/font/devpdf/NI
+share/groff/${VERSION}/font/devpdf/NR
+share/groff/${VERSION}/font/devpdf/PB
+share/groff/${VERSION}/font/devpdf/PBI
+share/groff/${VERSION}/font/devpdf/PI
+share/groff/${VERSION}/font/devpdf/PR
 share/groff/${VERSION}/font/devpdf/S
 share/groff/${VERSION}/font/devpdf/TB
 share/groff/${VERSION}/font/devpdf/TBI
 share/groff/${VERSION}/font/devpdf/TI
 share/groff/${VERSION}/font/devpdf/TR
+share/groff/${VERSION}/font/devpdf/ZCMI
 share/groff/${VERSION}/font/devpdf/ZD
 share/groff/${VERSION}/font/devpdf/download
 share/groff/${VERSION}/font/devpdf/enc/
 share/groff/${VERSION}/font/devpdf/enc/text.enc
 share/groff/${VERSION}/font/devpdf/map/
 share/groff/${VERSION}/font/devpdf/map/dingbats.map
+share/groff/${VERSION}/font/devpdf/map/symbol.map
 share/groff/${VERSION}/font/devpdf/map/symbolchars
-share/groff/${VERSION}/font/devpdf/map/symbolmap
-share/groff/${VERSION}/font/devpdf/map/textmap
+share/groff/${VERSION}/font/devpdf/map/text.map
 share/groff/${VERSION}/font/devps/
 share/groff/${VERSION}/font/devps/AB
 share/groff/${VERSION}/font/devps/ABI
@@ -504,16 +502,18 @@ share/groff/${VERSION}/font/devps/freeeuro.pfa
 share/groff/${VERSION}/font/devps/generate/
 share/groff/${VERSION}/font/devps/generate/Makefile
 share/groff/${VERSION}/font/devps/generate/afmname
+share/groff/${VERSION}/font/devps/generate/dingbats-reversed.map
 share/groff/${VERSION}/font/devps/generate/dingbats.map
-share/groff/${VERSION}/font/devps/generate/dingbats.rmap
-share/groff/${VERSION}/font/devps/generate/lgreekmap
+share/groff/${VERSION}/font/devps/generate/slanted-symbol.map
+share/groff/${VERSION}/font/devps/generate/symbol.map
 share/groff/${VERSION}/font/devps/generate/symbol.sed
 share/groff/${VERSION}/font/devps/generate/symbolchars
-share/groff/${VERSION}/font/devps/generate/symbolsl.afm
-share/groff/${VERSION}/font/devps/generate/textmap
+share/groff/${VERSION}/font/devps/generate/text.map
 share/groff/${VERSION}/font/devps/prologue
+share/groff/${VERSION}/font/devps/symbolsl.afm
 share/groff/${VERSION}/font/devps/symbolsl.pfa
 share/groff/${VERSION}/font/devps/text.enc
+share/groff/${VERSION}/font/devps/zapfdr.afm
 share/groff/${VERSION}/font/devps/zapfdr.pfa
 share/groff/${VERSION}/font/devutf8/
 share/groff/${VERSION}/font/devutf8/B
@@ -559,9 +559,7 @@ share/groff/${VERSION}/tmac/
 share/groff/${VERSION}/tmac/62bit.tmac
 share/groff/${VERSION}/tmac/X.tmac
 share/groff/${VERSION}/tmac/Xps.tmac
-share/groff/${VERSION}/tmac/a4.tmac
 share/groff/${VERSION}/tmac/an-ext.tmac
-share/groff/${VERSION}/tmac/an-old.tmac
 share/groff/${VERSION}/tmac/an.tmac
 share/groff/${VERSION}/tmac/andoc.tmac
 share/groff/${VERSION}/tmac/composite.tmac
@@ -575,6 +573,7 @@ share/groff/${VERSION}/tmac/doc.tmac
 share/groff/${VERSION}/tmac/dvi.tmac
 share/groff/${VERSION}/tmac/e.tmac
 share/groff/${VERSION}/tmac/ec.tmac
+share/groff/${VERSION}/tmac/en.tmac
 share/groff/${VERSION}/tmac/eqnrc
 share/groff/${VERSION}/tmac/europs.tmac
 share/groff/${VERSION}/tmac/fallbacks.tmac
@@ -586,11 +585,13 @@ share/groff/${VERSION}/tmac/html.tmac
 share/groff/${VERSION}/tmac/hyphen.cs
 share/groff/${VERSION}/tmac/hyphen.den
 share/groff/${VERSION}/tmac/hyphen.det
+share/groff/${VERSION}/tmac/hyphen.en
 share/groff/${VERSION}/tmac/hyphen.fr
+share/groff/${VERSION}/tmac/hyphen.it
 share/groff/${VERSION}/tmac/hyphen.sv
-share/groff/${VERSION}/tmac/hyphen.us
 share/groff/${VERSION}/tmac/hyphenex.cs
-share/groff/${VERSION}/tmac/hyphenex.us
+share/groff/${VERSION}/tmac/hyphenex.en
+share/groff/${VERSION}/tmac/it.tmac
 share/groff/${VERSION}/tmac/ja.tmac
 share/groff/${VERSION}/tmac/latin1.tmac
 share/groff/${VERSION}/tmac/latin2.tmac
@@ -613,9 +614,7 @@ share/groff/${VERSION}/tmac/mm.tmac
 share/groff/${VERSION}/tmac/mm/0.MT
 share/groff/${VERSION}/tmac/mm/4.MT
 share/groff/${VERSION}/tmac/mm/5.MT
-share/groff/${VERSION}/tmac/mm/locale
 share/groff/${VERSION}/tmac/mm/ms.cov
-share/groff/${VERSION}/tmac/mm/se_locale
 share/groff/${VERSION}/tmac/mm/se_ms.cov
 share/groff/${VERSION}/tmac/mmse.tmac
 share/groff/${VERSION}/tmac/mom.tmac
@@ -631,12 +630,15 @@ share/groff/${VERSION}/tmac/ps.tmac
 share/groff/${VERSION}/tmac/psatk.tmac
 share/groff/${VERSION}/tmac/psold.tmac
 share/groff/${VERSION}/tmac/pspic.tmac
+share/groff/${VERSION}/tmac/ptx.tmac
 share/groff/${VERSION}/tmac/refer-me.tmac
 share/groff/${VERSION}/tmac/refer-mm.tmac
 share/groff/${VERSION}/tmac/refer-ms.tmac
 share/groff/${VERSION}/tmac/refer.tmac
+share/groff/${VERSION}/tmac/rfc1345.tmac
 share/groff/${VERSION}/tmac/s.tmac
-share/groff/${VERSION}/tmac/safer.tmac
+share/groff/${VERSION}/tmac/sanitize.tmac
+share/groff/${VERSION}/tmac/sboxes.tmac
 share/groff/${VERSION}/tmac/spdf.tmac
 share/groff/${VERSION}/tmac/sv.tmac
 share/groff/${VERSION}/tmac/trace.tmac
@@ -645,7 +647,6 @@ share/groff/${VERSION}/tmac/troffrc
 share/groff/${VERSION}/tmac/troffrc-end
 share/groff/${VERSION}/tmac/tty-char.tmac
 share/groff/${VERSION}/tmac/tty.tmac
-share/groff/${VERSION}/tmac/unicode.tmac
 share/groff/${VERSION}/tmac/www.tmac
 share/groff/${VERSION}/tmac/zh.tmac
 share/groff/current
