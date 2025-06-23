@@ -34,6 +34,13 @@ CONFIGURE_ENV +=	ac_cv_prog_PDFFONTS= \
 			ac_cv_prog_PDFIMAGES= \
 			ac_cv_prog_PDFINFO= \
 			ac_cv_prog_XPMTOPPM=
+
+# Disable bogus tests in the gnulib fprintf-posix module.
+# Groff has no reason whatsoever to require these particular GNU features,
+# and we don't want our printf(3) implementation replaced by the monster
+# from gnulib.
+CONFIGURE_ENV +=	gl_cv_func_printf_directive_a=yes
+
 TEST_TARGET =		check
 
 pre-configure:
