@@ -1,24 +1,17 @@
-Disable hyphenation and adjustment (local change).
+Disable adjustment (local change).
 Index: tmac/troffrc
 --- tmac/troffrc.orig
 +++ tmac/troffrc
-@@ -41,10 +41,16 @@ troffrc!X100 troffrc!X100-12 troffrc!lj4 troff!lbp tro
- .\" Set the hyphenation language to 'us'.
- .do hla us
- .
--.\" Load hyphenation patterns and exceptions.
--.do hpf hyphen.us
--.do hpfa hyphenex.us
-+.\" Disable hyphenation:
-+.\" Do not load hyphenation patterns and exceptions.
-+.\"do hpf hyphen.us
-+.\"do hpfa hyphenex.us
+@@ -57,6 +57,12 @@ troffrc!html
+ .\" Set the input localization to English.
+ .do mso en.tmac
  .
 +.\" Disable adjustment by default,
 +.\" such that manuals look similar with groff and mandoc(1).
 +.ad l
 +.de ad
 +..
- .\" Handle paper formats.
- .do mso papersize.tmac
++.
+ .\" Handle paper formats on typesetting devices.
+ .if t .do mso papersize.tmac
  .
