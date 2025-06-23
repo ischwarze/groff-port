@@ -1,0 +1,17 @@
+Disable hyphenation (local change).
+Index: tmac/en.tmac
+--- tmac/en.tmac.orig
++++ tmac/en.tmac
+@@ -51,8 +51,10 @@
+ .rr locale*use-trap-hyphenation-mode
+ .
+ .hla en
+-.hpf hyphen.en
+-.hpfa hyphenex.en
++.\" Disable hyphenation:
++.\" Do not load hyphenation patterns and exceptions.
++.\"hpf hyphen.en
++.\"hpfa hyphenex.en
+ .
+ .
+ .\" man package
