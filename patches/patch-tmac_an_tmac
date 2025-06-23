@@ -2,9 +2,9 @@ chunks 1-4: Repair the .AT and .UC macros (committed upstream, too).
 chunk 2: Tweak section headers (local change).
 chunk 3: Set the default operating system name (local change).
 
-Index: tmac/an-old.tmac
---- tmac/an-old.tmac.orig
-+++ tmac/an-old.tmac
+Index: tmac/an.tmac
+--- tmac/an.tmac.orig
++++ tmac/an.tmac
 @@ -146,29 +146,6 @@
  .    DEVTAG-EO-TL
  .  \}
