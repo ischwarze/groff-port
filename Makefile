@@ -38,8 +38,10 @@ CONFIGURE_ENV +=	ac_cv_prog_PDFFONTS= \
 # Disable bogus tests in the gnulib fprintf-posix module.
 # Groff has no reason whatsoever to require these particular GNU features,
 # and we don't want our printf(3) implementation replaced by the monster
-# from gnulib.
-CONFIGURE_ENV +=	gl_cv_func_printf_directive_a=yes
+# from gnulib.  In particular, groff does not use %n, so it would be
+# insane to use an implementation that lacks our %n protection.
+CONFIGURE_ENV +=	gl_cv_func_printf_directive_a=yes \
+			gl_cv_func_printf_directive_n=yes
 
 TEST_TARGET =		check
 
