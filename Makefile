@@ -1,4 +1,4 @@
-COMMENT =		GNU troff typesetter
+COMMENT =		GNU roff typesetter
 VERSION =		1.23.0
 SUBST_VARS =		VERSION
 DISTNAME =		groff-${VERSION}
