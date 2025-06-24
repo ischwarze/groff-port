@@ -1,0 +1,24 @@
+Disable adjustment and hyphenation (local change).
+Index: tmac/mdoc.local
+--- tmac/mdoc.local.orig
++++ tmac/mdoc.local
+@@ -8,6 +8,19 @@
+ .\" might prefer to remap it to bold ("B") instead.
+ .\" .if n .ftr CW R
+ .\"
++.\" ----------------------------------------------------------------------
++.\" OpenBSD-specific changes
++.\" ----------------------------------------------------------------------
++.\" Disable adjustment and hyphenation by default,
++.\" such that manuals look similar with groff and mandoc(1).
++.ad l
++.de ad
++..
++.nh
++.de hy
++.nh
++..
++.\"
+ .\" Local Variables:
+ .\" mode: nroff
+ .\" fill-column: 72
