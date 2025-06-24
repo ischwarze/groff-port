@@ -7,6 +7,12 @@ output, the following two groff features have been disabled by
 default in man(7) and mdoc(7) manual pages: adjustment of text to
 the right margin and hyphenation.
 
+The following chamges have been made to fix regressions in the 1.23 release:
+ * The title in the mdoc(7) page header line is set in roman,
+   not in italic font.
+ * Manual page cross references generated with the mdoc(7) .Xr macro
+   are set in roman, not in italic font.
+
 To suit the taste of OpenBSD developers, one mdoc(7) formatting
 detail has been changed with respect to the upstream distribution:
 Title lines use an n-dash, not an m-dash between the manual page
