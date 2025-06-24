@@ -43,6 +43,7 @@ CONFIGURE_ARGS +=	PDFFONTS=missing \
 			PDFIMAGES=missing \
 			PDFINFO=missing			# print/poppler-utils
 CONFIGURE_ARGS +=	psselect=missing		# print/psutils
+CONFIGURE_ARGS +=	BASH_PROG=/bin/sh		# shells/bash
 
 # For similar reasons, avoid the dependency on X11 for now.
 # It would only provide the gxditview(1) program,
