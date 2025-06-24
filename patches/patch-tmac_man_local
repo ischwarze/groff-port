@@ -1,0 +1,24 @@
+Disable adjustment and hyphenation (local change).
+Index: tmac/man.local
+--- tmac/man.local.orig
++++ tmac/man.local
+@@ -24,6 +24,19 @@
+ .\" Set this register to configure which the `MR` macro uses.
+ .\" .nr an*MR-URL-format 1
+ .\"
++.\" ----------------------------------------------------------------------
++.\" OpenBSD-specific changes
++.\" ----------------------------------------------------------------------
++.\" Disable adjustment and hyphenation by default,
++.\" such that manuals look similar with groff and mandoc(1).
++.ad l
++.de ad
++..
++.nh
++.de hy
++.nh
++..
++.\"
+ .\" Local Variables:
+ .\" mode: nroff
+ .\" fill-column: 72
