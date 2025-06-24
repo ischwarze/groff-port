@@ -56,6 +56,9 @@ CONFIGURE_ARGS +=	--without-uchardet		# textproc/uchardet
 # Needed because groff would otherwise prefer gawk.
 CONFIGURE_ARGS +=	--with-awk=awk
 
+# Needed to get a predictable default paper size.
+CONFIGURE_ARGS +=	PAGE=letter
+
 # Disable bogus tests in the gnulib fprintf-posix module.
 # Groff has no reason whatsoever to require these particular GNU features,
 # and we don't want our printf(3) implementation replaced by the monster
