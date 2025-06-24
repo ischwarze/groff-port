@@ -8,6 +8,7 @@ default in man(7) and mdoc(7) manual pages: adjustment of text to
 the right margin and hyphenation.
 
 The following chamges have been made to fix regressions in the 1.23 release:
+ * The base paragraph indentation in manual pages is set to 5n, not to 7n.
  * The title in the mdoc(7) page header line is set in roman,
    not in italic font.
  * Manual page cross references generated with the mdoc(7) .Xr macro
