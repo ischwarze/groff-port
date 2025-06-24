@@ -20,8 +20,7 @@ COMPILER =		base-clang base-gcc
 SITES =			${SITE_GNU:=groff/}
 
 MAKE_FLAGS +=		docdir=${PREFIX}/share/doc/groff \
-			exampledir=${PREFIX}/share/examples/groff \
-			ac_cv_path_mkdir=/bin/mkdir
+			exampledir=${PREFIX}/share/examples/groff
 
 MODULES =		perl
 CONFIGURE_STYLE =	gnu
