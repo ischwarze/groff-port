@@ -1,6 +1,7 @@
 chunk 1: Tweak page headers (local change).
 chunk 2: Default value for the .Os macro (local change).
 chunk 3: Do not use an ugly double dash in the NAME line (local change).
+chunk 4: Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
 
 Index: tmac/mdoc/doc-common
 --- tmac/mdoc/doc-common.orig
@@ -32,3 +33,12 @@ Index: tmac/mdoc/doc-common
  ..
  .ec
  .
+@@ -1482,7 +1482,7 @@
+ .    if t \
+ .      ss \n[doc-reg-Sh] \n[doc-reg-Sh1]
+ .
+-.    in \n[IN]u
++.    in \n[BP]u
+ .    ns
+ .
+ .    doc-check-depth
