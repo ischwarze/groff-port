@@ -14,20 +14,20 @@ PERMIT_PACKAGE =	Yes
 
 WANTLIB =		c m ${COMPILER_LIBCXX}
 
-# Groff does not use C++, but merely pre-1995 C with classes.
-COMPILER =		base-clang base-gcc
-
 SITES =			${SITE_GNU:=groff/}
 
-MAKE_FLAGS +=		docdir=${PREFIX}/share/doc/groff \
-			exampledir=${PREFIX}/share/examples/groff
-
+# Groff does not use C++, but merely pre-1995 C with classes.
+COMPILER =		base-clang base-gcc
 MODULES =		perl
-CONFIGURE_STYLE =	gnu
 
 # In contrast to ghostscript itself, the ghostscript fonts have no
 # dependency, and they are very useful for typesetting work with groff.
 BUILD_DEPENDS =		print/ghostscript/gnu-fonts
+
+MAKE_FLAGS +=		docdir=${PREFIX}/share/doc/groff \
+			exampledir=${PREFIX}/share/examples/groff
+
+CONFIGURE_STYLE =	gnu
 
 # Our groff port needs to be lightweight because a few very basic
 # ports still depend on it for building their manual pages.
