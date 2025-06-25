@@ -1,8 +1,9 @@
 Disable adjustment and hyphenation (local change).
+Set .TH in roman, not italic font (local fix for 1.23 regression).
 Index: tmac/man.local
 --- tmac/man.local.orig
 +++ tmac/man.local
-@@ -24,6 +24,19 @@
+@@ -24,6 +24,21 @@
  .\" Set this register to configure which the `MR` macro uses.
  .\" .nr an*MR-URL-format 1
  .\"
@@ -17,6 +18,8 @@ Index: tmac/man.local
 +.nh
 +.de hy
 +.nh
++.\" Fix regression in .TH formatting
++.ds MF R
 +..
 +.\"
  .\" Local Variables:
