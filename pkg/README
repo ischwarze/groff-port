@@ -11,6 +11,8 @@ The following chamges have been made to fix regressions in the 1.23 release:
  * The base paragraph indentation in manual pages is set to 5n, not to 7n.
  * The title in the mdoc(7) page header line is set in roman,
    not in italic font.
+ * Manual page names marked up with the mdoc(7) .Nm macro are always
+   set in bold, not in roman font, including in the NAME section.
  * Manual page cross references generated with the mdoc(7) .Xr macro
    are set in roman, not in italic font.
 
