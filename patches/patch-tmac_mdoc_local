@@ -1,9 +1,10 @@
 Disable adjustment and hyphenation (local change).
 Set .Dt and .Xr in roman, not italic font (local fix for 1.23 regressions).
+Set literal text in CR, not bold font (local fix for 1.23 regression).
 Index: tmac/mdoc.local
 --- tmac/mdoc.local.orig
 +++ tmac/mdoc.local
-@@ -8,6 +8,22 @@
+@@ -8,6 +8,24 @@
  .\" might prefer to remap it to bold ("B") instead.
  .\" .if n .ftr CW R
  .\"
@@ -22,6 +23,8 @@ Index: tmac/mdoc.local
 +.\" Fix regressions in .Dt and .Xr formatting
 +.ds doc-page-topic-font \fR
 +.ds doc-Xr-font \fR
++.\" Fix regressions in .Bd, .Bf, .Dl, and .Li formatting
++.ds doc-Li-font \f(CR
 +.\"
  .\" Local Variables:
  .\" mode: nroff
