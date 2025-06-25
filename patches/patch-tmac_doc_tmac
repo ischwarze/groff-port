@@ -1,4 +1,6 @@
-Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
+chunk 1: Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
+chunk 2: Always set .Nm in bold, including in NAME (local regression fix).
+
 Index: tmac/doc.tmac
 --- tmac/doc.tmac.orig
 +++ tmac/doc.tmac
@@ -19,3 +21,17 @@ Index: tmac/doc.tmac
  .
  .\" LL and LT registers are handled by the doc-setup-page-layout macro.
  .
+@@ -1163,13 +1157,8 @@
+ .  if !\n[doc-arg-count] \{\
+ .    ds doc-macro-name Nm
+ .    ie \n[.$] \{\
+-.      \" Handle '.Nm ...' in "Name" section: don't use a special font.
+-.      ie \n[doc-in-name-section] \{\
+ .        if "\*[doc-topic-name]"" \
+ .          ds doc-topic-name "\$1\"
+-.        No \$@
+-.      \}
+-.      el \
+ .        doc-parse-args \$@
+ .    \}
+ .    el \{\
