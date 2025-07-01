@@ -1,8 +1,38 @@
-support .St -p1003.1-2024 (upstream commit ff948a62)
+chunks 1-2: support arbitrary second .Bx argument (to be pushed upstream)
+chunk 3: support .St -p1003.1-2024 (upstream commit ff948a62)
+
 Index: tmac/mdoc/doc-syms
 --- tmac/mdoc/doc-syms.orig
 +++ tmac/mdoc/doc-syms
-@@ -657,6 +657,8 @@
+@@ -84,6 +84,7 @@
+ .\" NS local variable:
+ .\" NS   doc-str-Bx
+ .\" NS   doc-str-Bx1
++.\" NS   doc-str-Bx2
+ .\" NS   doc-str-Bx-XXX
+ .\" NS
+ .\" NS width register 'Bx' defined in doc-common
+@@ -130,9 +131,16 @@
+ .            ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
+ .              ie d doc-str-Bx-\*[doc-arg\n[doc-arg-ptr]] \
+ .                as doc-str-Bx1 "\*[doc-str-Bx-\*[doc-arg\n[doc-arg-ptr]]]
+-.              el \
+-.                nr doc-arg-ptr -1
+-.            \}
++.              el \{\
++.                as doc-str-Bx1 "\-
++.                ds doc-str-Bx2 "\*[doc-arg\n[doc-arg-ptr]]
++.                substring doc-str-Bx2 0 0
++.                stringup doc-str-Bx2
++.                as doc-str-Bx1 "\*[doc-str-Bx2]
++.                ds doc-str-Bx2 "\*[doc-arg\n[doc-arg-ptr]]
++.                substring doc-str-Bx2 1
++.                as doc-str-Bx1 "\*[doc-str-Bx2]
++.            \}\}
+ .            el \
+ .              nr doc-arg-ptr -1
+ .          \}
+@@ -657,6 +665,8 @@
  .as doc-str-St--p1003.1-2004   " (\*[Lq]\)\*[Px]\*[doc-str-St].1\*[Rq])
  .ds doc-str-St--p1003.1-2008   \%IEEE\*[doc-str-St] Std 1003.1-2008
  .as doc-str-St--p1003.1-2008   " (\*[Lq]\)\*[Px]\*[doc-str-St].1\*[Rq])
