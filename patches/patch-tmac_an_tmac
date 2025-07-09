@@ -1,6 +1,7 @@
-chunks 1,4-6: Set base paragraph indentation to 5n (upstream commit 5d2e49f8).
+chunks 1,5-7: Set base paragraph indentation to 5n (upstream commit 5d2e49f8).
 chunk 2: Tweak section headers (local change).
-chunk 3: Set the default operating system name (local change).
+chunk 3: For .TH "", set the title to "UNTITLED" (to be pushed upstream)
+chunk 4: Set the default operating system name (local change).
 
 Index: tmac/an.tmac
 --- tmac/an.tmac.orig
@@ -23,7 +24,17 @@ Index: tmac/an.tmac
  .  ds an*section5 File Formats Manual\"
  .  ds an*section6 Games Manual\"
  .  ds an*section7 Miscellaneous Information Manual\"
-@@ -306,7 +306,7 @@
+@@ -285,7 +285,8 @@
+ .  nr an-is-in-diversion 0
+ .  nr an*is-in-example 0
+ .
+-.  ds an*topic "\\$1\"
++.  ie '\\$1'' .ds an*topic "UNTITLED\"
++.  el         .ds an*topic "\\$1\"
+ .  if \\n[CT] .stringup an*topic
+ .  ds an*section "\\$2\"
+ .  ie (\\n[.$] > 4) .ds an-extra3 "\\$5\"
+@@ -306,7 +307,7 @@
  .
  .  ds an-extra1 "\\$3\"
  .  ie (\\n[.$] > 3)    .ds an-extra2 "\\$4\"
@@ -32,7 +43,7 @@ Index: tmac/an.tmac
  .
  .  if '\\*[an-extra1]'' \{\
  .    ds an-msg .\\$0 missing third argument; suggest document\"
-@@ -681,7 +681,7 @@ contains unsupported escape sequence
+@@ -681,7 +682,7 @@ contains unsupported escape sequence
  .  an-break-paragraph
  .  an-reset-margin-and-inset-level
  .  fi
@@ -41,7 +52,7 @@ Index: tmac/an.tmac
  .  ti 0
  .  nr an-devtag-needs-end-of-heading 1
  .  DEVTAG-SH 1
-@@ -708,7 +708,7 @@ contains unsupported escape sequence
+@@ -708,7 +709,7 @@ contains unsupported escape sequence
  .  an-break-paragraph
  .  an-reset-margin-and-inset-level
  .  fi
@@ -50,7 +61,7 @@ Index: tmac/an.tmac
  .  ti \\n[SN]u
  .  nr an-devtag-needs-end-of-heading 1
  .  DEVTAG-SH 2
-@@ -1323,6 +1323,10 @@ contains unsupported escape sequence
+@@ -1323,6 +1324,10 @@ contains unsupported escape sequence
  .  if !r PDFOUTLINE.FOLDLEVEL .nr PDFOUTLINE.FOLDLEVEL 1
  .  if !r PDFHREF.VIEW.LEADING .nr PDFHREF.VIEW.LEADING 10p
  .\}
