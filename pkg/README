@@ -20,6 +20,7 @@ The following chamges have been made to fix regressions in the 1.23 release:
 The following improvements have been made.
 It is expected that they will be pushed upstream later:
  * The .Bx macro now supports arbitrary second arguments.
+ * If the first argument of .TH is empty, set the title to "UNTITLED".
 
 To suit the taste of OpenBSD developers, one mdoc(7) formatting
 detail has been changed with respect to the upstream distribution:
