@@ -19,6 +19,7 @@ The following chamges have been made to fix regressions in the 1.23 release:
 
 The following improvements have been made.
 It is expected that they will be pushed upstream later:
+ * Support .Lb in the synopsis.
  * The .Bx macro now supports arbitrary second arguments.
  * If the first argument of .TH is empty, set the title to "UNTITLED".
 
