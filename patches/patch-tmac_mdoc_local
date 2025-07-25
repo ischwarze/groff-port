@@ -1,10 +1,11 @@
 Disable adjustment and hyphenation (local change).
 Set .Dt and .Xr in roman, not italic font (local fix for 1.23 regressions).
 Set literal text in CR, not bold font (local fix for 1.23 regression).
+Map hyphen-minus and accents to ASCII in the traditional way (local change).
 Index: tmac/mdoc.local
 --- tmac/mdoc.local.orig
 +++ tmac/mdoc.local
-@@ -8,6 +8,24 @@
+@@ -8,6 +8,34 @@
  .\" might prefer to remap it to bold ("B") instead.
  .\" .if n .ftr CW R
  .\"
@@ -25,6 +26,16 @@ Index: tmac/mdoc.local
 +.ds doc-Xr-font \fR
 +.\" Fix regressions in .Bd, .Bf, .Dl, and .Li formatting
 +.ds doc-Li-font \f(CR
++.\"
++.\" Map ASCII input single quotes and hyphen-minus to ASCII output
++.\" until we properly escape them in OpenBSD manual pages.
++.if '\*[.T]'utf8' \{\
++.  char ' \N'39'
++.  char - \N'45'
++.  char ^ \N'94'
++.  char ` \N'96'
++.  char ~ \N'126'
++.\}
 +.\"
  .\" Local Variables:
  .\" mode: nroff
