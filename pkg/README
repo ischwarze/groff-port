@@ -18,6 +18,7 @@ The following chamges have been made to fix regressions in the 1.23 release:
    not in bold font.
  * All tail arguments of .ME and .UE macros are correctly printed.
  * Vertical spacing before .HP macros is reduced to the correct amount.
+ * The .OP macro does not pick a wrong font when called without arguments.
 
 The following improvements have been made.
 It is expected that they will be pushed upstream later:

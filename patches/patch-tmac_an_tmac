@@ -1,9 +1,10 @@
-chunks 1,5,6,11: Set base paragraph indentation 5n (upstream commit 5d2e49f8).
+chunks 1,5,6,12: Set base paragraph indentation 5n (upstream commit 5d2e49f8).
 chunk 2: Tweak section headers (local change).
 chunk 3: For .TH "", set the title to "UNTITLED" (to be pushed upstream)
 chunk 4: Set the default operating system name (local change).
 chunk 7: Fix .HP vertical spacing regression (upstream f607ea44, d483834a).
-chunk 8-10: Fix .ME and .UE tail argument regression (to be pushed upstream).
+xhunk 8: Fix regression of .OP without arguments (to be pushed upstream).
+chunk 9-11: Fix .ME and .UE tail argument regression (to be pushed upstream).
 
 Index: tmac/an.tmac
 --- tmac/an.tmac.orig
@@ -71,6 +72,15 @@ Index: tmac/an.tmac
  .  an-break-paragraph
  .  ne (1v + 1u)
  .  if \\n[.$] .nr an-prevailing-indent (n;\\$1)
+@@ -998,7 +998,7 @@ contains unsupported escape sequence
+ .  ie (\\n[.$] > 1) \
+ .    RI [\\f[B]\\$1\f[] \~\\$2 ]
+ .  el \
+-.    RB [ \\$1 ]
++.    RB [ "\\$1" ]
+ ..
+ .
+ .\" Begin an example (typically of source code or shell input).
 @@ -1112,13 +1112,13 @@ contains unsupported escape sequence
  .        nop \X^tty: link \\*[an*prefix]\\*[an*hyperlink]^\
  \\*[an*hyperlink]\X^tty: link^\c
