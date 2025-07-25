@@ -23,6 +23,11 @@ It is expected that they will be pushed upstream later:
  * The .Bx macro now supports arbitrary second arguments.
  * If the first argument of .TH is empty, set the title to "UNTITLED".
 
+Because the OpenBSD manual pages do not yet consistently escape
+hyphen-minus and accents characters in a typographically correct
+way, unescaped hyphen-minus and accent ASCII input characters are
+mapped to ASCII output glyphs in the traditional way.
+
 To suit the taste of OpenBSD developers, one mdoc(7) formatting
 detail has been changed with respect to the upstream distribution:
 Title lines use an n-dash, not an m-dash between the manual page
