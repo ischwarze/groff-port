@@ -1,7 +1,8 @@
-chunks 1,5-7: Set base paragraph indentation to 5n (upstream commit 5d2e49f8).
+chunks 1,5-8: Set base paragraph indentation to 5n (upstream commit 5d2e49f8).
 chunk 2: Tweak section headers (local change).
 chunk 3: For .TH "", set the title to "UNTITLED" (to be pushed upstream)
 chunk 4: Set the default operating system name (local change).
+chunk 7: Fix .HP vertical spacing regression (upstream f607ea44, d483834a).
 
 Index: tmac/an.tmac
 --- tmac/an.tmac.orig
@@ -61,7 +62,15 @@ Index: tmac/an.tmac
  .  ti \\n[SN]u
  .  nr an-devtag-needs-end-of-heading 1
  .  DEVTAG-SH 2
-@@ -1323,6 +1324,10 @@ contains unsupported escape sequence
+@@ -805,7 +806,6 @@ contains unsupported escape sequence
+ .\" Set a paragraph with a hanging indentation.
+ .\" .HP [indent]
+ .de1 HP
+-.  if !\\n[mS] \\*[an-deprecation-warn]\c
+ .  an-break-paragraph
+ .  ne (1v + 1u)
+ .  if \\n[.$] .nr an-prevailing-indent (n;\\$1)
+@@ -1323,6 +1323,10 @@ contains unsupported escape sequence
  .  if !r PDFOUTLINE.FOLDLEVEL .nr PDFOUTLINE.FOLDLEVEL 1
  .  if !r PDFHREF.VIEW.LEADING .nr PDFHREF.VIEW.LEADING 10p
  .\}
