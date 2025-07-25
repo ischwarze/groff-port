@@ -1,8 +1,9 @@
-chunks 1,5-8: Set base paragraph indentation to 5n (upstream commit 5d2e49f8).
+chunks 1,5,6,11: Set base paragraph indentation 5n (upstream commit 5d2e49f8).
 chunk 2: Tweak section headers (local change).
 chunk 3: For .TH "", set the title to "UNTITLED" (to be pushed upstream)
 chunk 4: Set the default operating system name (local change).
 chunk 7: Fix .HP vertical spacing regression (upstream f607ea44, d483834a).
+chunk 8-10: Fix .ME and .UE tail argument regression (to be pushed upstream).
 
 Index: tmac/an.tmac
 --- tmac/an.tmac.orig
@@ -70,6 +71,40 @@ Index: tmac/an.tmac
  .  an-break-paragraph
  .  ne (1v + 1u)
  .  if \\n[.$] .nr an-prevailing-indent (n;\\$1)
+@@ -1112,13 +1112,13 @@ contains unsupported escape sequence
+ .        nop \X^tty: link \\*[an*prefix]\\*[an*hyperlink]^\
+ \\*[an*hyperlink]\X^tty: link^\c
+ .    \}
+-.    nop \&\\$1\"
++.    nop \&\\$*\"
+ .  \}
+ .  \" If not hyperlinking, format URI in angle brackets.  There was no
+ .  \" diversion, so the link text has already been formatted normally.
+ .  el \{\
+ .    nh
+-.    nop \\[la]\\*[an*hyperlink]\\[ra]\\$1
++.    nop \\[la]\\*[an*hyperlink]\\[ra]\\$*
+ .    hy \\n[an*hyphenation-mode]
+ .  \}
+ .
+@@ -1139,7 +1139,7 @@ contains unsupported escape sequence
+ .\" punctuation (or, rarely, other text) after link text.
+ .\" .ME [trailing-text]
+ .de1 ME
+-.  an*end-hyperlink \\$1
++.  an*end-hyperlink \\$*
+ .  rm an*prefix
+ ..
+ .
+@@ -1157,7 +1157,7 @@ contains unsupported escape sequence
+ .\" punctuation (or, rarely, other text) after link text.
+ .\" .UE [trailing-text]
+ .de1 UE
+-.  an*end-hyperlink \\$1
++.  an*end-hyperlink \\$*
+ .  rm an*prefix
+ ..
+ .
 @@ -1323,6 +1323,10 @@ contains unsupported escape sequence
  .  if !r PDFOUTLINE.FOLDLEVEL .nr PDFOUTLINE.FOLDLEVEL 1
  .  if !r PDFHREF.VIEW.LEADING .nr PDFHREF.VIEW.LEADING 10p
