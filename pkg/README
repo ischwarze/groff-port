@@ -16,6 +16,7 @@ The following chamges have been made to fix regressions in the 1.23 release:
  * Manual page cross references are set in roman, not in italic font.
  * Literal text in mdoc(7) is set in constant width roman,
    not in bold font.
+ * All tail arguments of .ME and .UE macros are correctly printed.
  * Vertical spacing before .HP macros is reduced to the correct amount.
 
 The following improvements have been made.
