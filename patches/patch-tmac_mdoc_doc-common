@@ -1,8 +1,9 @@
-chunks 1,4: Do not set date to UNDATED (to be pushed upstream).
+chunks 1,5: Do not set date to UNDATED (to be pushed upstream).
 chunk 2: Tweak page headers (local change).
-chunk 3: Default value for the .Os macro (local change).
-chunk 5: Do not use an ugly double dash in the NAME line (local change).
-chunk 6: Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
+chunk 3: Put architecture name in parentheses (to be pushed upstream).
+chunk 4: Default value for the .Os macro (local change).
+chunk 6: Do not use an ugly double dash in the NAME line (local change).
+chunk 7: Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
 
 Index: tmac/mdoc/doc-common
 --- tmac/mdoc/doc-common.orig
@@ -25,7 +26,23 @@ Index: tmac/mdoc/doc-common
  .ds doc-volume-ds-5 File Formats Manual
  .ds doc-volume-ds-6 Games Manual
  .ds doc-volume-ds-7 Miscellaneous Information Manual
-@@ -490,7 +490,7 @@
+@@ -455,12 +455,11 @@
+ .    ds doc-section \$2
+ .    ie \B'\$2' \{\
+ .      if ((\$2 >= 1) & (\$2 <= 9)) \{\
+-.        ds doc-volume \" empty (not "LOCAL")
++.        ds doc-volume "\*[doc-volume-ds-\$2]
+ .        if \A'\$3' \{\
+ .          if d doc-volume-as-\$3 \
+-.            as doc-volume "\*[doc-volume-as-\$3]
+-.          \}
+-.        as doc-volume " \*[doc-volume-ds-\$2]
++.            as doc-volume " (\*[doc-volume-as-\$3])
++.        \}
+ .      \}
+ .    \}
+ .    el \{\
+@@ -490,7 +489,7 @@
  .\" NS
  .\" NS override this in 'mdoc.local', if necessary
  .
@@ -34,7 +51,7 @@ Index: tmac/mdoc/doc-common
  .
  .
  .\" NS doc-operating-system global string
-@@ -1150,7 +1150,7 @@
+@@ -1150,7 +1149,7 @@
  .  doc-break-page-with-new-number
  .
  .  \" Reset strings to reduce info leaks from one man page to the next.
@@ -43,7 +60,7 @@ Index: tmac/mdoc/doc-common
  .  ds doc-page-topic UNTITLED\"
  .  ds doc-volume LOCAL\"
  .  ds doc-section \" empty
-@@ -1244,7 +1244,7 @@
+@@ -1244,7 +1243,7 @@
  .
  .eo
  .de Nd
@@ -52,7 +69,7 @@ Index: tmac/mdoc/doc-common
  ..
  .ec
  .
-@@ -1482,7 +1482,7 @@
+@@ -1482,7 +1481,7 @@
  .    if t \
  .      ss \n[doc-reg-Sh] \n[doc-reg-Sh1]
  .
