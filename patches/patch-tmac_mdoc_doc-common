@@ -1,9 +1,10 @@
-chunks 1,5: Do not set date to UNDATED (to be pushed upstream).
+chunks 1,8: Do not set date to UNDATED (to be pushed upstream).
 chunk 2: Tweak page headers (local change).
 chunk 3: Put architecture name in parentheses (to be pushed upstream).
 chunk 4: Default value for the .Os macro (local change).
-chunk 6: Do not use an ugly double dash in the NAME line (local change).
-chunk 7: Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
+chunks 5-7: No parentheses if the section is empty (to be pushed upstream).
+chunk 9: Do not use an ugly double dash in the NAME line (local change).
+chunk 10: Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
 
 Index: tmac/mdoc/doc-common
 --- tmac/mdoc/doc-common.orig
@@ -51,7 +52,37 @@ Index: tmac/mdoc/doc-common
  .
  .
  .\" NS doc-operating-system global string
-@@ -1150,7 +1149,7 @@
+@@ -1005,7 +1004,8 @@
+ .eo
+ .de doc-header
+ .  ds doc-xref \*[doc-page-topic-font]\*[doc-page-topic]\f[]\"
+-.  as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
++.  if !"\*[doc-section]"" \
++.    as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
+ .  ds doc-abbv \*[doc-page-topic]\"
+ .  ev doc-env-dh
+ .  doc-setup-page-layout
+@@ -1016,7 +1016,8 @@
+ .  if (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
+ .    while (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
+ .      ds doc-xref \*[doc-page-topic-font]\*[doc-abbv]\f[]\"
+-.      as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
++.      if !"\*[doc-section]"" \
++.        as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
+ .      length doc-abbv-len-prev \*[doc-abbv]
+ .      substring doc-abbv 0 -2
+ .      length doc-abbv-len \*[doc-abbv]
+@@ -1061,7 +1062,8 @@
+ .eo
+ .de doc-footer
+ .  ds doc-xref \*[doc-page-topic-font]\*[doc-page-topic]\f[]\"
+-.  as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
++.  if !"\*[doc-section]"" \
++.    as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
+ .  ds doc-page-id \n[%]
+ .  if r X \{\
+ .    if (\n[%] > \n[X]) \{\
+@@ -1150,7 +1152,7 @@
  .  doc-break-page-with-new-number
  .
  .  \" Reset strings to reduce info leaks from one man page to the next.
@@ -60,7 +91,7 @@ Index: tmac/mdoc/doc-common
  .  ds doc-page-topic UNTITLED\"
  .  ds doc-volume LOCAL\"
  .  ds doc-section \" empty
-@@ -1244,7 +1243,7 @@
+@@ -1244,7 +1246,7 @@
  .
  .eo
  .de Nd
@@ -69,7 +100,7 @@ Index: tmac/mdoc/doc-common
  ..
  .ec
  .
-@@ -1482,7 +1481,7 @@
+@@ -1482,7 +1484,7 @@
  .    if t \
  .      ss \n[doc-reg-Sh] \n[doc-reg-Sh1]
  .
