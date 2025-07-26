@@ -1,5 +1,6 @@
 chunk 1: Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
 chunks 2,3: Always set .Nm in bold, including in NAME (local regression fix).
+chunk 4: Set .Sx in italics, not in roman with quotes (local regression fix).
 
 Index: tmac/doc.tmac
 --- tmac/doc.tmac.orig
@@ -49,3 +50,29 @@ Index: tmac/doc.tmac
  .
  .      nop \*[doc-Nm-font]\c
  .    \}
+@@ -4574,23 +4562,9 @@
+ .\" NS   cross section reference
+ .\" NS
+ .\" NS width register 'Sx' set in doc-common
+-.\"
+-.\" TODO: This duplicates the definition of `Dq`; figure out how to
+-.\" simply wrap that macro if possible.  (It's not trivial to do so
+-.\" because of mdoc's design feature of recursively calling macro
+-.\" arguments as macros.)
+ .
+-.eo
+-.de Sx
+-.  if !\n[doc-arg-count] \
+-.    ds doc-macro-name Sx
+-.
+-.  ds doc-quote-left "\*[Lq]
+-.  ds doc-quote-right "\*[Rq]
+-.
+-.  doc-enclose-string \$@
+-..
+-.ec
++.als Sx doc-generic-macro
++.ds doc-Sx-usage section_header
+ .
+ .
+ .\" NS doc-end-column-list macro
