@@ -16,6 +16,7 @@ The following chamges have been made to fix regressions in the 1.23 release:
  * Manual page cross references are set in roman, not in italic font.
  * Literal text in mdoc(7) is set in constant width roman,
    not in bold font.
+ * Set .Sx in italic font, not in roman font with quotes.
  * Do not set the mdoc(7) date to "UNDATED".
  * Omit empty parantheses in the header when no section number is given.
  * All tail arguments of .ME and .UE macros are correctly printed.
