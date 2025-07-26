@@ -21,6 +21,10 @@ The following chamges have been made to fix regressions in the 1.23 release:
  * Vertical spacing before .HP macros is reduced to the correct amount.
  * The .OP macro does not pick a wrong font when called without arguments.
 
+The following change has been made to fix an older groff regression:
+ * .Dt puts the architecture name in parentheses after the volume
+   title in the header line, not before the volume title.
+
 The following improvements have been made.
 It is expected that they will be pushed upstream later:
  * Support .Lb in the synopsis.
