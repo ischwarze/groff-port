@@ -1,11 +1,21 @@
-chunk 1: Tweak page headers (local change).
-chunk 2: Default value for the .Os macro (local change).
-chunk 3: Do not use an ugly double dash in the NAME line (local change).
-chunk 4: Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
+chunks 1,4: Do not set date to UNDATED (to be pushed upstream).
+chunk 2: Tweak page headers (local change).
+chunk 3: Default value for the .Os macro (local change).
+chunk 5: Do not use an ugly double dash in the NAME line (local change).
+chunk 6: Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
 
 Index: tmac/mdoc/doc-common
 --- tmac/mdoc/doc-common.orig
 +++ tmac/mdoc/doc-common
+@@ -278,7 +278,7 @@
+ .\" NS doc-date-string global string
+ .\" NS   the manual page date as set by 'Dd'
+ .
+-.ds doc-date-string UNDATED\"
++.ds doc-date-string \" empty
+ .
+ .
+ .\" NS Dd user macro (not parsed, not callable)
 @@ -335,7 +335,7 @@
  .ds doc-volume-ds-1 General Commands Manual
  .ds doc-volume-ds-2 System Calls Manual
@@ -24,6 +34,15 @@ Index: tmac/mdoc/doc-common
  .
  .
  .\" NS doc-operating-system global string
+@@ -1150,7 +1150,7 @@
+ .  doc-break-page-with-new-number
+ .
+ .  \" Reset strings to reduce info leaks from one man page to the next.
+-.  ds doc-date-string UNDATED\"
++.  ds doc-date-string \" empty
+ .  ds doc-page-topic UNTITLED\"
+ .  ds doc-volume LOCAL\"
+ .  ds doc-section \" empty
 @@ -1244,7 +1244,7 @@
  .
  .eo
