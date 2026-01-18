@@ -4,7 +4,7 @@ Map hyphen-minus and accents to ASCII in the traditional way (local change).
 Index: tmac/man.local
 --- tmac/man.local.orig
 +++ tmac/man.local
-@@ -24,6 +24,31 @@
+@@ -22,6 +22,31 @@
  .\" Set this register to configure which the `MR` macro uses.
  .\" .nr an*MR-URL-format 1
  .\"

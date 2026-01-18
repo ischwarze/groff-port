@@ -1,24 +1,13 @@
-chunks 1,5,6,12: Set base paragraph indentation 5n (upstream commit 5d2e49f8).
-chunk 2: Tweak section headers (local change).
-chunk 3: For .TH "", set the title to "UNTITLED" (to be pushed upstream)
-chunk 4: Set the default operating system name (local change).
-chunk 7: Fix .HP vertical spacing regression (upstream f607ea44, d483834a).
-xhunk 8: Fix regression of .OP without arguments (to be pushed upstream).
-chunk 9-11: Fix .ME and .UE tail argument regression (to be pushed upstream).
+chunk 1: Tweak section headers (local change).
+chunk 2: For .TH "", set the title to "UNTITLED" (to be pushed upstream)
+chunk 3: Set the default operating system name (local change).
+xhunk 4: Fix regression of .OP without arguments (to be pushed upstream).
+chunk 5-7: Fix .ME and .UE tail argument regression (to be pushed upstream).
 
 Index: tmac/an.tmac
 --- tmac/an.tmac.orig
 +++ tmac/an.tmac
-@@ -170,7 +170,7 @@
- .
- .de an-reset-margin-and-inset-level
- .  nr an-inset-level 1
--.  nr an-margin \\n[IN]
-+.  nr an-margin \\n[BP]
- .  nr an-saved-margin1 \\n[IN]
- .  nr an-prevailing-indent \\n[IN]
- .  nr an-saved-prevailing-indent1 \\n[IN]
-@@ -195,7 +195,7 @@
+@@ -279,7 +279,7 @@
  .  ds an*section1 General Commands Manual\"
  .  ds an*section2 System Calls Manual\"
  .  ds an*section3 Library Functions Manual\"
@@ -27,17 +16,17 @@ Index: tmac/an.tmac
  .  ds an*section5 File Formats Manual\"
  .  ds an*section6 Games Manual\"
  .  ds an*section7 Miscellaneous Information Manual\"
-@@ -285,7 +285,8 @@
- .  nr an-is-in-diversion 0
+@@ -370,7 +370,8 @@
  .  nr an*is-in-example 0
+ .  nr an*is-in-link-text-diversion 0
  .
--.  ds an*topic "\\$1\"
-+.  ie '\\$1'' .ds an*topic "UNTITLED\"
-+.  el         .ds an*topic "\\$1\"
- .  if \\n[CT] .stringup an*topic
+-.  ds an*ident "\\$1\"
++.  ie '\\$1'' .ds an*ident "UNTITLED\"
++.  el         .ds an*ident "\\$1\"
+ .  if \\n[CT] .stringup an*ident
  .  ds an*section "\\$2\"
  .  ie (\\n[.$] > 4) .ds an-extra3 "\\$5\"
-@@ -306,7 +307,7 @@
+@@ -384,7 +385,7 @@
  .
  .  ds an-extra1 "\\$3\"
  .  ie (\\n[.$] > 3)    .ds an-extra2 "\\$4\"
@@ -45,34 +34,8 @@ Index: tmac/an.tmac
 +.  el                  .ds an-extra2 "OpenBSD\"
  .
  .  if '\\*[an-extra1]'' \{\
- .    ds an-msg .\\$0 missing third argument; suggest document\"
-@@ -681,7 +682,7 @@ contains unsupported escape sequence
- .  an-break-paragraph
- .  an-reset-margin-and-inset-level
- .  fi
--.  in \\n[an-margin]u
-+.  in \\n[BP]u
- .  ti 0
- .  nr an-devtag-needs-end-of-heading 1
- .  DEVTAG-SH 1
-@@ -708,7 +709,7 @@ contains unsupported escape sequence
- .  an-break-paragraph
- .  an-reset-margin-and-inset-level
- .  fi
--.  in \\n[IN]u
-+.  in \\n[BP]u
- .  ti \\n[SN]u
- .  nr an-devtag-needs-end-of-heading 1
- .  DEVTAG-SH 2
-@@ -805,7 +806,6 @@ contains unsupported escape sequence
- .\" Set a paragraph with a hanging indentation.
- .\" .HP [indent]
- .de1 HP
--.  if !\\n[mS] \\*[an-deprecation-warn]\c
- .  an-break-paragraph
- .  ne (1v + 1u)
- .  if \\n[.$] .nr an-prevailing-indent (n;\\$1)
-@@ -998,7 +998,7 @@ contains unsupported escape sequence
+ .    ds an-msg .\\$0 missing third argument; consider document\"
+@@ -1111,7 +1112,7 @@ contains unsupported escape sequence
  .  ie (\\n[.$] > 1) \
  .    RI [\\f[B]\\$1\f[] \~\\$2 ]
  .  el \
@@ -81,48 +44,30 @@ Index: tmac/an.tmac
  ..
  .
  .\" Begin an example (typically of source code or shell input).
-@@ -1112,13 +1112,13 @@ contains unsupported escape sequence
- .        nop \X^tty: link \\*[an*prefix]\\*[an*hyperlink]^\
- \\*[an*hyperlink]\X^tty: link^\c
- .    \}
--.    nop \&\\$1\"
-+.    nop \&\\$*\"
+@@ -1207,7 +1208,7 @@ contains unsupported escape sequence
+ .\" "mailto:", but this need not be visible when rendering an email
+ .\" address on a device incapable of hyperlinking.
+ .de an*end-hyperlink
+-.  ds an*trailing-text \\$1\"
++.  ds an*trailing-text \\$*\"
+ .  ie (\\n[an*is-in-link-text-diversion] & \\n[an*do-hyperlink]) \{\
+ .    br
+ .    di
+@@ -1294,7 +1295,7 @@ contains unsupported escape sequence
+ .    an-warn .\\$0 requires a preceding .MT
+ .    return
  .  \}
- .  \" If not hyperlinking, format URI in angle brackets.  There was no
- .  \" diversion, so the link text has already been formatted normally.
- .  el \{\
- .    nh
--.    nop \\[la]\\*[an*hyperlink]\\[ra]\\$1
-+.    nop \\[la]\\*[an*hyperlink]\\[ra]\\$*
- .    hy \\n[an*hyphenation-mode]
- .  \}
- .
-@@ -1139,7 +1139,7 @@ contains unsupported escape sequence
- .\" punctuation (or, rarely, other text) after link text.
- .\" .ME [trailing-text]
- .de1 ME
 -.  an*end-hyperlink \\$1
 +.  an*end-hyperlink \\$*
  .  rm an*prefix
  ..
  .
-@@ -1157,7 +1157,7 @@ contains unsupported escape sequence
- .\" punctuation (or, rarely, other text) after link text.
- .\" .UE [trailing-text]
- .de1 UE
+@@ -1320,7 +1321,7 @@ contains unsupported escape sequence
+ .    an-warn .\\$0 requires a preceding .UR
+ .    return
+ .  \}
 -.  an*end-hyperlink \\$1
 +.  an*end-hyperlink \\$*
  .  rm an*prefix
  ..
  .
-@@ -1323,6 +1323,10 @@ contains unsupported escape sequence
- .  if !r PDFOUTLINE.FOLDLEVEL .nr PDFOUTLINE.FOLDLEVEL 1
- .  if !r PDFHREF.VIEW.LEADING .nr PDFHREF.VIEW.LEADING 10p
- .\}
-+.
-+.\" base paragraph indentation
-+.if !r BP \
-+.  nr BP 5n
- .
- .\" continuous rendering (one long page)
- .if !r cR \{\

@@ -3,11 +3,11 @@ Set .Sx in italics, not in roman with quotes (local regression fix).
 Index: tmac/mdoc/doc-nroff
 --- tmac/mdoc/doc-nroff.orig
 +++ tmac/mdoc/doc-nroff
-@@ -65,6 +65,7 @@
- .ds doc-Pa-font \f[I]
- .ds doc-Sh-font \f[\*[HF]]\"
- .ds doc-Sy-font \f[B]
-+.ds doc-Sx-font \f[I]
- .ds doc-Tn-font \f[R]
- .ds doc-Va-font \f[I]
- .ds doc-Xr-font \f[I]
+@@ -67,6 +67,7 @@
+ .ds doc-No-font R\"
+ .ds doc-Pa-font I\"
+ .ds doc-Sh-font \*[HF]\"
++.ds doc-Sx-font I\"
+ .ds doc-Sy-font B\"
+ .ds doc-Tn-font R\"
+ .ds doc-Va-font I\"

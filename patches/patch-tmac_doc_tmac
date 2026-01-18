@@ -1,56 +1,31 @@
-chunk 1: Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
-chunks 2,3: Always set .Nm in bold, including in NAME (local regression fix).
-chunk 4: Set .Sx in italics, not in roman with quotes (local regression fix).
+chunks 1,2: Always set .Nm in bold, including in NAME (local regression fix).
+chunk 3: Set .Sx in italics, not in roman with quotes (local regression fix).
 
 Index: tmac/doc.tmac
 --- tmac/doc.tmac.orig
 +++ tmac/doc.tmac
-@@ -178,14 +178,8 @@
- .\" via andoc.tmac and man(1); see \n[doc-hyphen-flags] in doc-common.
- .if !r HY .nr HY 1
- .
--.\" Use -rIN=<xxx> to set the paragraph indentation amount.
--.if !r IN \{\
--.  \" We select an integer indentation value in nroff mode because this
--.  \" value is used additively for multiple purposes; rounding of
--.  \" accumulating fractions would produce inconsistent results.
--.  ie t .nr IN 7.2n
--.  el   .nr IN 7n
--.\}
-+.\" Use -rBP=<xxx> to set the paragraph indentation amount.
-+.if !r BP .nr BP 5n
- .
- .\" LL and LT registers are handled by the doc-setup-page-layout macro.
- .
-@@ -1162,16 +1156,8 @@
- .de Nm
+@@ -1184,11 +1184,6 @@
  .  if !\n[doc-arg-count] \{\
  .    ds doc-macro-name Nm
--.    ie \n[.$] \{\
--.      \" Handle '.Nm ...' in "Name" section: don't use a special font.
--.      ie \n[doc-in-name-section] \{\
+ .    ie \n[.$] \{\
+-.      \" Handle '.Nm ...' in "Name" section.
+-.      if \n[doc-in-name-section] \{\
 -.        if "\*[doc-topic-name]"" \
 -.          ds doc-topic-name "\$1\"
--.        No \$@
 -.      \}
--.      el \
--.        doc-parse-args \$@
--.    \}
-+.    ie \n[.$] \
-+.      doc-parse-args \$@
+ .      doc-parse-args \$@
+ .    \}
  .    el \{\
- .      ie "\*[doc-topic-name]"" \
- .        tm Usage: .Nm name ... (#\n[.c])
-@@ -1227,6 +1213,8 @@
+@@ -1246,6 +1241,8 @@
  .          \}
  .          ti -\n[doc-indent-synopsis]u
  .      \}\}
 +.      if "\*[doc-topic-name]"" \
 +.        ds doc-topic-name "\*[doc-arg\n[doc-arg-ptr]]
  .
- .      nop \*[doc-Nm-font]\c
+ .      nop \f[\*[doc-Nm-font]]\c
  .    \}
-@@ -4574,23 +4562,9 @@
+@@ -4783,23 +4780,9 @@ arguments
  .\" NS   cross section reference
  .\" NS
  .\" NS width register 'Sx' set in doc-common

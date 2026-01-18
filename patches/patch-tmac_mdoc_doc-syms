@@ -1,11 +1,10 @@
 chunks 1-2: support arbitrary second .Bx argument (to be pushed upstream)
-chunk 3: support .St -p1003.1-2024 (upstream commit ff948a62)
-chunks 4-5: support .Lb in the synopsis (to be pushed upstream)
+chunks 3-4: support .Lb in the synopsis (to be pushed upstream)
 
 Index: tmac/mdoc/doc-syms
 --- tmac/mdoc/doc-syms.orig
 +++ tmac/mdoc/doc-syms
-@@ -84,6 +84,7 @@
+@@ -86,6 +86,7 @@
  .\" NS local variable:
  .\" NS   doc-str-Bx
  .\" NS   doc-str-Bx1
@@ -13,7 +12,7 @@ Index: tmac/mdoc/doc-syms
  .\" NS   doc-str-Bx-XXX
  .\" NS
  .\" NS width register 'Bx' defined in doc-common
-@@ -130,9 +131,16 @@
+@@ -132,9 +133,16 @@
  .            ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
  .              ie d doc-str-Bx-\*[doc-arg\n[doc-arg-ptr]] \
  .                as doc-str-Bx1 "\*[doc-str-Bx-\*[doc-arg\n[doc-arg-ptr]]]
@@ -33,16 +32,7 @@ Index: tmac/mdoc/doc-syms
  .            el \
  .              nr doc-arg-ptr -1
  .          \}
-@@ -657,6 +665,8 @@
- .as doc-str-St--p1003.1-2004   " (\*[Lq]\)\*[Px]\*[doc-str-St].1\*[Rq])
- .ds doc-str-St--p1003.1-2008   \%IEEE\*[doc-str-St] Std 1003.1-2008
- .as doc-str-St--p1003.1-2008   " (\*[Lq]\)\*[Px]\*[doc-str-St].1\*[Rq])
-+.ds doc-str-St--p1003.1-2024   \%IEEE\*[doc-str-St] Std 1003.1-2024
-+.as doc-str-St--p1003.1-2024   " (\*[Lq]\)\*[Px]\*[doc-str-St].1\*[Rq])
- .ec
- .
- .\" POSIX Part 2: Shell and Utilities
-@@ -780,6 +790,7 @@
+@@ -782,6 +790,7 @@
  .\" NS   doc-reg-Lb
  .\" NS   doc-str-Lb
  .\" NS   doc-str-Lb1
@@ -50,7 +40,7 @@ Index: tmac/mdoc/doc-syms
  .\" NS   doc-str-Lb-XXX
  .\" NS
  .\" NS width register 'Lb' defined in doc-common
-@@ -875,6 +886,28 @@
+@@ -877,6 +886,28 @@
  .  ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
  .    nr doc-curr-font \n[.f]
  .    ds doc-str-Lb \f[\n[doc-curr-font]]

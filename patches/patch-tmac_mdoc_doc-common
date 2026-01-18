@@ -4,7 +4,6 @@ chunk 3: Put architecture name in parentheses (to be pushed upstream).
 chunk 4: Default value for the .Os macro (local change).
 chunks 5-7: No parentheses if the section is empty (to be pushed upstream).
 chunk 9: Do not use an ugly double dash in the NAME line (local change).
-chunk 10: Set the base paragraph indentation to 5n (upstream commit 5d2e49f8).
 
 Index: tmac/mdoc/doc-common
 --- tmac/mdoc/doc-common.orig
@@ -18,7 +17,7 @@ Index: tmac/mdoc/doc-common
  .
  .
  .\" NS Dd user macro (not parsed, not callable)
-@@ -335,7 +335,7 @@
+@@ -345,7 +345,7 @@
  .ds doc-volume-ds-1 General Commands Manual
  .ds doc-volume-ds-2 System Calls Manual
  .ds doc-volume-ds-3 Library Functions Manual
@@ -27,7 +26,7 @@ Index: tmac/mdoc/doc-common
  .ds doc-volume-ds-5 File Formats Manual
  .ds doc-volume-ds-6 Games Manual
  .ds doc-volume-ds-7 Miscellaneous Information Manual
-@@ -455,12 +455,11 @@
+@@ -464,12 +464,11 @@
  .    ds doc-section \$2
  .    ie \B'\$2' \{\
  .      if ((\$2 >= 1) & (\$2 <= 9)) \{\
@@ -43,7 +42,7 @@ Index: tmac/mdoc/doc-common
  .      \}
  .    \}
  .    el \{\
-@@ -490,7 +489,7 @@
+@@ -499,7 +498,7 @@
  .\" NS
  .\" NS override this in 'mdoc.local', if necessary
  .
@@ -52,60 +51,51 @@ Index: tmac/mdoc/doc-common
  .
  .
  .\" NS doc-operating-system global string
-@@ -1005,7 +1004,8 @@
+@@ -1009,7 +1008,8 @@
  .eo
- .de doc-header
- .  ds doc-xref \*[doc-page-topic-font]\*[doc-page-topic]\f[]\"
--.  as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
+ .de1 doc-header
+ .  ds doc-xref \f[\*[doc-page-identifier-font]]\*[doc-page-identifier]\f[]\"
+-.  as doc-xref \f[\*[doc-page-section-font]](\*[doc-section])\f[]\"
 +.  if !"\*[doc-section]"" \
-+.    as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
- .  ds doc-abbv \*[doc-page-topic]\"
++.    as doc-xref \f[\*[doc-page-section-font]](\*[doc-section])\f[]\"
+ .  ds doc-abbv \*[doc-page-identifier]\"
  .  ev doc-env-dh
  .  doc-setup-page-layout
-@@ -1016,7 +1016,8 @@
+@@ -1020,7 +1020,8 @@
  .  if (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
  .    while (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
- .      ds doc-xref \*[doc-page-topic-font]\*[doc-abbv]\f[]\"
--.      as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
+ .      ds doc-xref \f[\*[doc-page-identifier-font]]\*[doc-abbv]\f[]\"
+-.      as doc-xref \f[\*[doc-page-section-font]](\*[doc-section])\f[]\"
 +.      if !"\*[doc-section]"" \
-+.        as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
++.        as doc-xref \f[\*[doc-page-section-font]](\*[doc-section])\f[]\"
  .      length doc-abbv-len-prev \*[doc-abbv]
  .      substring doc-abbv 0 -2
  .      length doc-abbv-len \*[doc-abbv]
-@@ -1061,7 +1062,8 @@
+@@ -1065,7 +1066,8 @@
  .eo
- .de doc-footer
- .  ds doc-xref \*[doc-page-topic-font]\*[doc-page-topic]\f[]\"
--.  as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
+ .de1 doc-footer
+ .  ds doc-xref \f[\*[doc-page-identifier-font]]\*[doc-page-identifier]\f[]\"
+-.  as doc-xref \f[\*[doc-page-section-font]](\*[doc-section])\f[]\"
 +.  if !"\*[doc-section]"" \
-+.    as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
++.    as doc-xref \f[\*[doc-page-section-font]](\*[doc-section])\f[]\"
  .  ds doc-page-id \n[%]
  .  if r X \{\
  .    if (\n[%] > \n[X]) \{\
-@@ -1150,7 +1152,7 @@
- .  doc-break-page-with-new-number
- .
+@@ -1122,7 +1124,7 @@
+ .eo
+ .de doc-reset-titles
  .  \" Reset strings to reduce info leaks from one man page to the next.
 -.  ds doc-date-string UNDATED\"
 +.  ds doc-date-string \" empty
- .  ds doc-page-topic UNTITLED\"
+ .  ds doc-page-identifier UNTITLED\"
  .  ds doc-volume LOCAL\"
  .  ds doc-section \" empty
-@@ -1244,7 +1246,7 @@
- .
- .eo
+@@ -1336,7 +1338,7 @@
  .de Nd
+ .  doc-reset-adjustment-mode
+ .  doc-reset-hyphenation-mode
 -.  nop \[em] \$*
 +.  nop \[en] \$*
  ..
  .ec
  .
-@@ -1482,7 +1484,7 @@
- .    if t \
- .      ss \n[doc-reg-Sh] \n[doc-reg-Sh1]
- .
--.    in \n[IN]u
-+.    in \n[BP]u
- .    ns
- .
- .    doc-check-depth

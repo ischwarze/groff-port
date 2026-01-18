@@ -5,8 +5,8 @@ Map hyphen-minus and accents to ASCII in the traditional way (local change).
 Index: tmac/mdoc.local
 --- tmac/mdoc.local.orig
 +++ tmac/mdoc.local
-@@ -8,6 +8,34 @@
- .\" might prefer to remap it to bold ("B") instead.
+@@ -12,6 +12,34 @@
+ .\" You might prefer to remap it to bold ("B") instead.
  .\" .if n .ftr CW R
  .\"
 +.\" ----------------------------------------------------------------------
