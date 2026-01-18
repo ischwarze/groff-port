@@ -38,6 +38,9 @@ Branches are set up as follows:
    to build and work correctly.  Most of the work here is done,
    but final completion has not been reached yet.
 
+ * The **1.24** branch will be used to get groff 1.24 to build
+   and work correctly.  This work has only just been started.
+
 Pull requests will *not* be accepted.  If you have suggestions,
 send email to schwarze at openbsd dot org.  Such mail can optionally
 contain in-line patch(1)es.  Mail containing HTML, Markdown,
