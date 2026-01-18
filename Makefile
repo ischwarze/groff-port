@@ -1,7 +1,9 @@
 COMMENT =		GNU roff typesetter
-VERSION =		1.23.0
+VERSION =		1.24.0
 SUBST_VARS =		VERSION
-DISTNAME =		groff-${VERSION}
+DISTNAME =		groff-${VERSION}.rc1
+PKGNAME =		groff-${VERSION}rc1
+WRKDIST =		${WRKDIR}/groff-1.23.0.5077-7dcc8
 
 CATEGORIES =		textproc
 DPB_PROPERTIES =	parallel
@@ -14,7 +16,8 @@ PERMIT_PACKAGE =	Yes
 
 WANTLIB =		c m ${COMPILER_LIBCXX}
 
-SITES =			${SITE_GNU:=groff/}
+#SITES =		${SITE_GNU:=groff/}
+SITES =			https://alpha.gnu.org/gnu/groff/
 
 # Groff does not use C++, but merely pre-1995 C with classes.
 COMPILER =		base-clang base-gcc
