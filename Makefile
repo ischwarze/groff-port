@@ -6,7 +6,7 @@ PKGNAME =		groff-${VERSION}rc1
 WRKDIST =		${WRKDIR}/groff-1.23.0.5077-7dcc8
 
 CATEGORIES =		textproc
-DPB_PROPERTIES =	parallel
+#DPB_PROPERTIES =	parallel
 
 HOMEPAGE =		https://www.gnu.org/software/groff/
 MAINTAINER =		Ingo Schwarze <schwarze@openbsd.org>
