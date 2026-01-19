@@ -68,15 +68,20 @@ CONFIGURE_ARGS +=	PAGE=letter
 # from gnulib.  In particular, groff does not use %n, so it would be
 # insane to use an implementation that lacks our %n protection.
 CONFIGURE_ENV +=	gl_cv_func_printf_directive_a=yes \
+			gl_cv_func_printf_directive_b=yes \
 			gl_cv_func_printf_directive_n=yes \
-			gl_cv_func_printf_enomem=yes
+			gl_cv_func_printf_enomem=yes \
+			gl_cv_func_printf_sizes_c23=yes \
+			gl_cv_func_strerror_0_works=yes \
+			gl_cv_header_errno_h_complete=yes
 
 # Disable dependencies of the gnulib fprintf-posix module.
 # Even though we tell ./configure that our fprintf(3) shall be used,
 # gnulib is too stupid to understand that implies the dependecies
 # aren't needed either und would still compile in needless and
 # potentially risky printf(3) code from gnulib.
-CONFIGURE_ENV +=	ac_cv_func_vasnprintf=yes
+CONFIGURE_ENV +=	ac_cv_func_vasnprintf=yes \
+			gl_cv_func_vasnprintf_works=yes
 
 # Even after the above CONFIGURE_ENV cleanup, gnulib compiles in
 # several bogus files that groff does not need, merely because
