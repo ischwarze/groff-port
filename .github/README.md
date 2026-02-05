@@ -2,6 +2,7 @@
 
 This repository contains work in progress on the
 [textproc/groff](https://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/textproc/groff/)
+port in OpenBSD.
 
 The reason why such a repository is needed is twofold:
 
@@ -39,7 +40,9 @@ Branches are set up as follows:
    but final completion has not been reached yet.
 
  * The **1.24** branch will be used to get groff 1.24 to build
-   and work correctly.  This work has only just been started.
+   and work correctly.  This work has only just been started;
+   so far, groff-1.24.0rc2 builds, but it does not look like
+   it builds correctly just yet.
 
 Pull requests will *not* be accepted.  If you have suggestions,
 send email to schwarze at openbsd dot org.  Such mail can optionally
