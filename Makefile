@@ -87,6 +87,11 @@ CONFIGURE_ENV +=	ac_cv_func_vasnprintf=yes \
 # gnulib enables them by default.  Get rid of them.
 MAKE_FLAGS +=		lib_libgnu_a_OBJECTS=
 
+# Disable bogus test in the gnulib putenv module.
+# It complains about behaviour that groff does not need
+# and that is explicitely permitted by POSIX.
+CONFIGURE_ENV +=	gl_cv_func_svid_putenv=yes
+
 TEST_TARGET =		check
 
 pre-configure:
