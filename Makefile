@@ -1,9 +1,8 @@
 COMMENT =		GNU roff typesetter
 VERSION =		1.24.0
 SUBST_VARS =		VERSION
-DISTNAME =		groff-${VERSION}.rc1
-PKGNAME =		groff-${VERSION}rc1
-WRKDIST =		${WRKDIR}/groff-1.23.0.5077-7dcc8
+DISTNAME =		groff-${VERSION}.rc2
+PKGNAME =		groff-${VERSION}rc2
 
 CATEGORIES =		textproc
 #DPB_PROPERTIES =	parallel
