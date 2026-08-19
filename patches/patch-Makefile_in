@@ -1,0 +1,38 @@
+chunk 1: To build doc/automake.pdf, pdfmom(1) runs with arguments -p -e -t,
+         among others, see the definition of $MOMPDFMOM.
+chunk 2: To build doc/meintro_fr.ps, groff(1) runs with argument -t,
+         among others, see the very build rule this is patching.
+chunk 3: To build doc/webpage.ps, groff(1) uses -I which implies -g,
+         see the very build rule this is patching.
+Add the missing dependencies.
+
+Index: Makefile.in
+--- Makefile.in.orig
++++ Makefile.in
+@@ -14255,7 +14255,7 @@ uninstall_sboxes:
+ $(PROCESSEDDOCFILES_PS): $(PROCESSEDFILES_DEPS_PS)
+ @USE_GROPDF_TRUE@$(PROCESSEDDOCFILES_PDF): $(PROCESSEDFILES_DEPS_PDF)
+ $(PROCESSEDDOCFILES_TXT): $(PROCESSEDFILES_DEPS_TXT)
+-doc/automake.pdf: doc/automake.mom pdfmom contrib/mom/om.tmac
++doc/automake.pdf: doc/automake.mom pdfmom eqn pic tbl contrib/mom/om.tmac
+ 
+ $(PROCESSEDEXAMPLEFILES_HTML): $(PROCESSEDFILES_DEPS_HTML)
+ $(PROCESSEDEXAMPLEFILES_PS): $(PROCESSEDFILES_DEPS_PS)
+@@ -14352,7 +14352,7 @@ doc/grnexmpl.ps: $(doc_srcdir)/grnexmpl.me $(doc_srcdi
+ 
+ # Use '-K utf8', not '-k', in case 'configure' didn't find uchardet.
+ # The French translation uses tbl; its English counterpart does not.
+-doc/meintro_fr.ps: doc/meintro_fr.me preconv
++doc/meintro_fr.ps: doc/meintro_fr.me preconv tbl
+ 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
+ 	&& $(DOC_GROFF) -K utf8 -t -Tps -me -mfr $< >$@
+ 
+@@ -14365,7 +14365,7 @@ doc/pic.ps: $(doc_srcdir)/pic.ms eqn pic tbl
+ 	&& $(DOC_GROFF) -pet -Tps -ms $(doc_srcdir)/pic.ms >$@
+ 
+ doc/webpage.ps: $(DOC_GNU_EPS) tmac/www.tmac tbl
+-doc/webpage.ps: $(doc_srcdir)/webpage.ms
++doc/webpage.ps: $(doc_srcdir)/webpage.ms grn
+ 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
+ 	&& $(DOC_GROFF) -I $(doc_srcdir) -I $(doc_builddir) -t -Tps \
+ 	  -ms -mwww $(doc_srcdir)/webpage.ms >$@
