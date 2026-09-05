@@ -4,7 +4,7 @@ chunk 3: Set .Sx in italics, not in roman with quotes (local regression fix).
 Index: tmac/doc.tmac
 --- tmac/doc.tmac.orig
 +++ tmac/doc.tmac
-@@ -1184,11 +1184,6 @@
+@@ -1186,11 +1186,6 @@
  .  if !\n[doc-arg-count] \{\
  .    ds doc-macro-name Nm
  .    ie \n[.$] \{\
@@ -16,7 +16,7 @@ Index: tmac/doc.tmac
  .      doc-parse-args \$@
  .    \}
  .    el \{\
-@@ -1246,6 +1241,8 @@
+@@ -1248,6 +1243,8 @@
  .          \}
  .          ti -\n[doc-indent-synopsis]u
  .      \}\}
@@ -25,7 +25,7 @@ Index: tmac/doc.tmac
  .
  .      nop \f[\*[doc-Nm-font]]\c
  .    \}
-@@ -4783,23 +4780,9 @@ arguments
+@@ -4785,23 +4782,9 @@ arguments
  .\" NS   cross section reference
  .\" NS
  .\" NS width register 'Sx' set in doc-common

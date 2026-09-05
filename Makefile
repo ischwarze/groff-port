@@ -1,5 +1,5 @@
 COMMENT =		GNU roff typesetter
-VERSION =		1.24.0
+VERSION =		1.25.0
 SUBST_VARS =		VERSION
 DISTNAME =		groff-${VERSION}.rc2
 PKGNAME =		groff-${VERSION}rc2

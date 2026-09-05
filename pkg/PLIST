@@ -100,6 +100,7 @@ lib/groff/site-tmac/
 @man man/man7/roff.7
 share/doc/groff/
 share/doc/groff/groff-man-pages.utf8.txt
+share/doc/groff/groff-pdf-features.ms
 share/doc/groff/groff.txt
 share/doc/groff/html/
 share/doc/groff/html/mom/
@@ -134,15 +135,16 @@ share/doc/groff/meintro_fr.ps
 share/doc/groff/meref.me
 share/doc/groff/meref.ps
 share/doc/groff/ms.ms
-share/doc/groff/ms.ps
 share/doc/groff/msboxes.ms
 share/doc/groff/pdf/
 share/doc/groff/pdf/automake.pdf
 share/doc/groff/pdf/groff-man-pages.pdf
+share/doc/groff/pdf/groff-pdf-features.pdf
 share/doc/groff/pdf/mom-pdf.pdf
+share/doc/groff/pdf/ms.pdf
 share/doc/groff/pdf/msboxes.pdf
+share/doc/groff/pdf/pic.pdf
 share/doc/groff/pic.ms
-share/doc/groff/pic.ps
 share/doc/pkg-readmes/${PKGSTEM}
 share/examples/groff/
 share/examples/groff/chem/
@@ -203,6 +205,7 @@ share/examples/groff/chem/morphine.chem
 share/examples/groff/chem/penicillin.chem
 share/examples/groff/chem/reserpine.chem
 share/examples/groff/gnu.eps
+share/examples/groff/gnu.png
 share/examples/groff/grnexmpl.g
 share/examples/groff/grnexmpl.me
 share/examples/groff/grnexmpl.ps
@@ -447,10 +450,6 @@ share/groff/${VERSION}/font/devpdf/CB
 share/groff/${VERSION}/font/devpdf/CBI
 share/groff/${VERSION}/font/devpdf/CI
 share/groff/${VERSION}/font/devpdf/CR
-share/groff/${VERSION}/font/devpdf/CSH
-share/groff/${VERSION}/font/devpdf/CSS
-share/groff/${VERSION}/font/devpdf/CTH
-share/groff/${VERSION}/font/devpdf/CTS
 share/groff/${VERSION}/font/devpdf/DESC
 share/groff/${VERSION}/font/devpdf/EURO
 share/groff/${VERSION}/font/devpdf/Foundry
@@ -462,10 +461,6 @@ share/groff/${VERSION}/font/devpdf/HNBI
 share/groff/${VERSION}/font/devpdf/HNI
 share/groff/${VERSION}/font/devpdf/HNR
 share/groff/${VERSION}/font/devpdf/HR
-share/groff/${VERSION}/font/devpdf/JPG
-share/groff/${VERSION}/font/devpdf/JPM
-share/groff/${VERSION}/font/devpdf/KOG
-share/groff/${VERSION}/font/devpdf/KOM
 share/groff/${VERSION}/font/devpdf/NB
 share/groff/${VERSION}/font/devpdf/NBI
 share/groff/${VERSION}/font/devpdf/NI
@@ -674,6 +669,7 @@ share/groff/${VERSION}/tmac/hyphen.en
 share/groff/${VERSION}/tmac/hyphen.es
 share/groff/${VERSION}/tmac/hyphen.fr
 share/groff/${VERSION}/tmac/hyphen.it
+share/groff/${VERSION}/tmac/hyphen.pl
 share/groff/${VERSION}/tmac/hyphen.ru
 share/groff/${VERSION}/tmac/hyphen.sv
 share/groff/${VERSION}/tmac/hyphenex.cs
@@ -713,6 +709,7 @@ share/groff/${VERSION}/tmac/papersize.tmac
 share/groff/${VERSION}/tmac/pdf.tmac
 share/groff/${VERSION}/tmac/pdfpic.tmac
 share/groff/${VERSION}/tmac/pic.tmac
+share/groff/${VERSION}/tmac/pl.tmac
 share/groff/${VERSION}/tmac/ps.tmac
 share/groff/${VERSION}/tmac/psatk.tmac
 share/groff/${VERSION}/tmac/psfig.tmac

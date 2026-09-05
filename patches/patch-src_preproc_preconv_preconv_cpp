@@ -1,0 +1,17 @@
+XXX temporary hack to avoid locale_charset(), to be fixed
+Index: src/preproc/preconv/preconv.cpp
+--- src/preproc/preconv/preconv.cpp.orig
++++ src/preproc/preconv/preconv.cpp
+@@ -1265,12 +1265,7 @@ main(int argc, char **argv)
+   // encoding.
+   setlocale(LC_ALL, "");
+   char *locale = getlocale(LC_CTYPE);
+-  if (!locale || !strcmp(locale, "C") || !strcmp(locale, "POSIX"))
+     strcpy(fallback_encoding, "latin1");
+-  else {
+-    strncpy(fallback_encoding, locale_charset(), MAX_VAR_LEN - 1);
+-    fallback_encoding[MAX_VAR_LEN - 1] = 0;
+-  }
+ 
+   program_name = argv[0];
+   int opt;

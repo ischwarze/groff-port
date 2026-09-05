@@ -17,7 +17,7 @@ Index: tmac/mdoc/doc-common
  .
  .
  .\" NS Dd user macro (not parsed, not callable)
-@@ -345,7 +345,7 @@
+@@ -348,7 +348,7 @@
  .ds doc-volume-ds-1 General Commands Manual
  .ds doc-volume-ds-2 System Calls Manual
  .ds doc-volume-ds-3 Library Functions Manual
@@ -26,7 +26,7 @@ Index: tmac/mdoc/doc-common
  .ds doc-volume-ds-5 File Formats Manual
  .ds doc-volume-ds-6 Games Manual
  .ds doc-volume-ds-7 Miscellaneous Information Manual
-@@ -464,12 +464,11 @@
+@@ -467,12 +467,11 @@
  .    ds doc-section \$2
  .    ie \B'\$2' \{\
  .      if ((\$2 >= 1) & (\$2 <= 9)) \{\
@@ -42,7 +42,7 @@ Index: tmac/mdoc/doc-common
  .      \}
  .    \}
  .    el \{\
-@@ -499,7 +498,7 @@
+@@ -502,7 +501,7 @@
  .\" NS
  .\" NS override this in 'mdoc.local', if necessary
  .
@@ -51,7 +51,7 @@ Index: tmac/mdoc/doc-common
  .
  .
  .\" NS doc-operating-system global string
-@@ -1009,7 +1008,8 @@
+@@ -1012,7 +1011,8 @@
  .eo
  .de1 doc-header
  .  ds doc-xref \f[\*[doc-page-identifier-font]]\*[doc-page-identifier]\f[]\"
@@ -61,7 +61,7 @@ Index: tmac/mdoc/doc-common
  .  ds doc-abbv \*[doc-page-identifier]\"
  .  ev doc-env-dh
  .  doc-setup-page-layout
-@@ -1020,7 +1020,8 @@
+@@ -1023,7 +1023,8 @@
  .  if (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
  .    while (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
  .      ds doc-xref \f[\*[doc-page-identifier-font]]\*[doc-abbv]\f[]\"
@@ -71,7 +71,7 @@ Index: tmac/mdoc/doc-common
  .      length doc-abbv-len-prev \*[doc-abbv]
  .      substring doc-abbv 0 -2
  .      length doc-abbv-len \*[doc-abbv]
-@@ -1065,7 +1066,8 @@
+@@ -1068,7 +1069,8 @@
  .eo
  .de1 doc-footer
  .  ds doc-xref \f[\*[doc-page-identifier-font]]\*[doc-page-identifier]\f[]\"
@@ -81,7 +81,7 @@ Index: tmac/mdoc/doc-common
  .  ds doc-page-id \n[%]
  .  if r X \{\
  .    if (\n[%] > \n[X]) \{\
-@@ -1122,7 +1124,7 @@
+@@ -1125,7 +1127,7 @@
  .eo
  .de doc-reset-titles
  .  \" Reset strings to reduce info leaks from one man page to the next.
@@ -90,7 +90,7 @@ Index: tmac/mdoc/doc-common
  .  ds doc-page-identifier UNTITLED\"
  .  ds doc-volume LOCAL\"
  .  ds doc-section \" empty
-@@ -1336,7 +1338,7 @@
+@@ -1339,7 +1341,7 @@
  .de Nd
  .  doc-reset-adjustment-mode
  .  doc-reset-hyphenation-mode

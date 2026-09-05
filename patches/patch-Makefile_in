@@ -1,0 +1,46 @@
+Extremely hackish patch to make the $(GROFF_MAN_PAGES_ALL) targets work.
+It appears that the dependency on soelim causes the command list for
+each of the files listed in $(GROFF_MAN_PAGES_ALL) to become empty
+and the ".man" inference rule to no longer take effect,
+thus killing the build because the *.1 files never get built
+and then targets needing them fail.
+I did not yet manage to figure out what exactly goes wrong.
+
+Work around the problem for now by adding the soelim dependency to the
+dependencies instead.  This is probably not entirely correct and unlikely
+to work in parallel builds.
+
+Index: Makefile.in
+--- Makefile.in.orig
++++ Makefile.in
+@@ -19698,10 +19698,10 @@ doc/automake.pdf: doc/automake.mom $(TMAC_PACKAGE_MOM)
+ $(PROCESSEDEXAMPLEFILES_HTML): $(PROCESSEDFILES_DEPS_HTML)
+ $(PROCESSEDEXAMPLEFILES_PS): $(PROCESSEDFILES_DEPS_PS)
+ 
+-$(GROFF_MAN_PAGES_ALL): soelim
++# $(GROFF_MAN_PAGES_ALL): soelim
+ 
+ # This is a convenience target for (re-)generating all the man pages.
+-man-all: $(GROFF_MAN_PAGES_ALL)
++man-all: soelim $(GROFF_MAN_PAGES_ALL)
+ 
+ # ...and for cleaning them.
+ man-clean:
+@@ -19714,7 +19714,7 @@ $(DOC_GMP_COVER_PAGE): $(doc_srcdir)/groff-man-pages-c
+ # Many pages use tbl, a few use eqn, and a couple use pic.  We also need
+ # groff's FreeEuro font so we can embed it.
+ 
+-doc/groff-man-pages.pdf: $(GROFF_MAN_PAGES_ALL) \
++doc/groff-man-pages.pdf: soelim $(GROFF_MAN_PAGES_ALL) \
+   $(DOC_GMP_COVER_PAGE) \
+   eqn pic tbl pdfmom preconv \
+   $(TMAC_PACKAGE_MAN) $(TMAC_PACKAGE_MDOC) font/devps/freeeuro.pfa
+@@ -19725,7 +19725,7 @@ doc/groff-man-pages.pdf: $(GROFF_MAN_PAGES_ALL) \
+ 	  $(tmac_srcdir)/sv.tmac $(GROFF_MAN_PAGES2) \
+ 	  $(tmac_srcdir)/en.tmac $(GROFF_MAN_PAGES3) > $@
+ 
+-doc/groff-man-pages.utf8.txt: $(GROFF_MAN_PAGES_ALL) \
++doc/groff-man-pages.utf8.txt: soelim $(GROFF_MAN_PAGES_ALL) \
+   eqn pic tbl preconv \
+   $(TMAC_PACKAGE_MAN) $(TMAC_PACKAGE_MDOC)
+ 	$(GROFF_V)$(DOC_GROFF) -K utf-8 -pet -Tutf8 -mandoc \
